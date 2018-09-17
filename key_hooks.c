@@ -6,15 +6,14 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 18:28:08 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/14 11:39:35 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/17 14:45:08 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <math.h>
 #include <mlx.h>
-#include <libft.h>
-#include "filler_viz.h"
+#include "includes/filler_viz.h"
 
 void		emancipate(t_envars *env)
 {

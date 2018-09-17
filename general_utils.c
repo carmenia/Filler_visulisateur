@@ -6,13 +6,12 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 18:27:16 by nmei              #+#    #+#             */
-/*   Updated: 2018/01/23 00:33:30 by nmei             ###   ########.fr       */
+/*   Updated: 2018/09/17 14:45:24 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <libft.h>
-#include "filler_viz.h"
+#include "includes/filler_viz.h"
 
 /*
 **	idx() - Useful function to get the row, col value from a flattened

@@ -3,39 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 17:21:43 by nmei              #+#    #+#             */
-/*   Updated: 2017/11/30 13:59:38 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:10:07 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/16 11:00:39 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-
-/*
-**	memmove checks if dst and src overlap
-**	If our dst is longer than source + 'len to copy' then we can just
-**	blindly copy forward as with memcpy.
-**
-**	However, if our dst is shorter than source + 'len to copy' then
-**	we should copy from the 'end' (i.e. from dst + len back to dst).
-*/
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char *end;
-	unsigned char *src_ptr;
-	unsigned char *dst_ptr;
+	size_t	i;
+	char	*dst_char;
+	char	*src_char;
 
-	if ((size_t)dst - (size_t)src >= len)
-		return (ft_memcpy(dst, src, len));
+	dst_char = (char *)dst;
+	src_char = (char *)src;
+	if (src <= dst && dst <= src + len)
+	{
+		i = len;
+		while (i > 0)
+		{
+			dst_char[i - 1] = src_char[i - 1];
+			i--;
+		}
+	}
 	else
 	{
-		end = (unsigned char *)dst;
-		src_ptr = (unsigned char *)src + len;
-		dst_ptr = (unsigned char *)dst + len;
-		while (dst_ptr != end)
-			*--dst_ptr = *--src_ptr;
+		i = 0;
+		while (i < len)
+		{
+			dst_char[i] = src_char[i];
+			i++;
+		}
 	}
 	return (dst);
 }

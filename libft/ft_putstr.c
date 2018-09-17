@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 08:49:28 by nmei              #+#    #+#             */
-/*   Updated: 2017/11/30 14:00:02 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:12:05 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/08 19:12:06 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-void	ft_putstr(char *str)
+void	ft_putstr(char const *s)
 {
-	if (str)
-	{
-		ft_putstr_fd(str, 1);
-	}
+	ft_putstr_fd(s, 1);
 }

@@ -6,15 +6,14 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 09:52:48 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/11 19:10:09 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/17 14:43:36 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <mlx.h>
-#include <libft.h>
-#include "filler_viz.h"
+#include "includes/filler_viz.h"
 
 void			disp_info(int mode)
 {

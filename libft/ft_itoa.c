@@ -3,54 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 19:37:21 by nmei              #+#    #+#             */
-/*   Updated: 2017/12/01 13:06:05 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:05:43 by apoque            #+#    #+#             */
+/*   Updated: 2018/08/23 15:57:42 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <libft.h>
+#include "libft.h"
+#include <limits.h>
 
-static int		itoa_len(int num, int base)
+static int	ft_string_size(long long n, int signe, char **str)
 {
-	int count;
+	int	size;
 
-	count = 0;
-	while (num != 0)
+	size = 1 + signe;
+	while (n / 10 > 0)
 	{
-		num = num / base;
-		count++;
+		n = n / 10;
+		size++;
 	}
-	return (count);
+	*str = ft_strnew(size);
+	return (size);
 }
 
-char			*ft_itoa(int nbr)
+char		*ft_itoa(intmax_t n)
 {
-	char	*result;
-	int		len;
-	int		ind;
+	intmax_t	result;
+	char		*str;
+	int			signe;
+	int			size;
+	int			i;
 
-	ind = 0;
-	len = itoa_len(nbr, 10);
-	if (nbr < 0)
-		len = len + 1;
-	if (nbr == 0)
-		len = 1;
-	result = NULL;
-	if ((result = (char *)malloc(sizeof(*result) * (len + 1))))
+	signe = 0;
+	i = 0;
+	if (n == LLONG_MIN)
+		return (ft_strdup("-9223372036854775808"));
+	result = (intmax_t)n;
+	if (result < 0)
+		signe = 1;
+	if (result < 0)
+		result = -result;
+	size = ft_string_size(result, signe, &str);
+	if (signe == 1)
+		str[0] = '-';
+	while (i < size - signe)
 	{
-		if (nbr < 0)
-			result[0] = '-';
-		if (nbr == 0)
-			result[0] = '0';
-		while (nbr != 0)
-		{
-			result[(len - ind++) - 1] = ft_abs(nbr % 10) + '0';
-			nbr = nbr / 10;
-		}
-		result[len] = '\0';
+		str[size - 1 - i] = result % 10 + 48;
+		result = result / 10;
+		i++;
 	}
-	return (result);
+	return (str);
 }

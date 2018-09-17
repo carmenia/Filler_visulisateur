@@ -3,33 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 19:13:28 by nmei              #+#    #+#             */
-/*   Updated: 2017/11/30 14:00:20 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:13:44 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/08 19:13:55 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdlib.h>
-#include <libft.h>
+#include <string.h>
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s)
 {
-	char	*new_s1;
-	char	*start;
-	size_t	len;
+	const char	*str;
+	char		*dup;
+	size_t		i;
+	size_t		len;
 
-	len = ft_strlen(s1);
-	new_s1 = (char *)malloc((len + 1) * sizeof(*new_s1));
-	if (new_s1)
+	str = (const char *)s;
+	len = ft_strlen(str);
+	dup = (char *)malloc(sizeof(char) * (len + 1));
+	i = 0;
+	if (!dup)
+		return (NULL);
+	while (i < len)
 	{
-		new_s1[len] = '\0';
-		start = new_s1;
-		while (len--)
-		{
-			*new_s1++ = *s1++;
-		}
-		return (start);
+		dup[i] = str[i];
+		i++;
 	}
-	return (NULL);
+	dup[i] = '\0';
+	return (dup);
 }

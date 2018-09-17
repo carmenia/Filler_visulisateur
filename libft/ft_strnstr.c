@@ -3,38 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 16:10:20 by nmei              #+#    #+#             */
-/*   Updated: 2017/11/30 14:00:58 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:16:32 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/18 12:39:21 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
+#include <string.h>
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	char	*big_ptr;
-	char	*new_b_strt;
-	char	*lit_ptr;
+	size_t	a;
+	size_t	b;
 
-	big_ptr = (char *)big;
-	if (!*little)
-		return (big_ptr);
-	while (*big_ptr)
+	a = 0;
+	b = 0;
+	if (len == 0)
+		return (0);
+	while (haystack[a] != '\0' && a < len)
 	{
-		new_b_strt = big_ptr;
-		lit_ptr = (char *)little;
-		while (*big_ptr && *lit_ptr && *big_ptr == *lit_ptr)
-		{
-			if ((size_t)(big_ptr - big) >= len)
-				return (NULL);
-			big_ptr++;
-			lit_ptr++;
-		}
-		if (!*lit_ptr)
-			return (new_b_strt);
-		big_ptr = new_b_strt + 1;
+		b = 0;
+		while (haystack[a + b] == needle[b] && (a + b) < len && needle[b])
+			b++;
+		if (needle[b] == '\0')
+			return ((char*)&haystack[a]);
+		a++;
 	}
-	return (NULL);
+	return (0);
 }

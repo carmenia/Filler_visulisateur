@@ -3,36 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 14:46:25 by nmei              #+#    #+#             */
-/*   Updated: 2017/11/30 14:01:09 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:17:24 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/13 12:10:24 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
+#include <string.h>
 
-char	*ft_strstr(const char *big, const char *little)
+char	*ft_strstr(const char *src, const char *find)
 {
-	char *big_ptr;
-	char *new_b_strt;
-	char *lit_ptr;
+	size_t	len;
 
-	big_ptr = (char *)big;
-	if (!*little)
-		return (big_ptr);
-	while (*big_ptr)
+	len = ft_strlen(find);
+	if (*find == '\0' || !find)
+		return ((char *)src);
+	while (*src)
 	{
-		new_b_strt = big_ptr;
-		lit_ptr = (char *)little;
-		while (*big_ptr && *lit_ptr && *big_ptr == *lit_ptr)
-		{
-			big_ptr++;
-			lit_ptr++;
-		}
-		if (!*lit_ptr)
-			return (new_b_strt);
-		big_ptr = new_b_strt + 1;
+		if (ft_strncmp(src, find, len) == 0)
+			return ((char *)src);
+		src++;
 	}
 	return (NULL);
 }

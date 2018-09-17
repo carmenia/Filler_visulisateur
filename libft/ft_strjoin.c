@@ -3,37 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 19:18:31 by nmei              #+#    #+#             */
-/*   Updated: 2017/11/30 14:00:28 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:14:29 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/16 11:16:19 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+#include <string.h>
 #include <stdlib.h>
-#include <libft.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*join_str;
-	char	*temp;
-	size_t	new_len;
+	int		size;
+	int		i;
+	int		j;
+	char	*str;
 
-	if (s1 && s2)
+	if (!s1 || !s2)
+		return (NULL);
+	i = 0;
+	j = 0;
+	size = (int)ft_strlen(s1) + (int)ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (size + 1));
+	if (!str)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		new_len = ft_strlen(s1) + ft_strlen(s2);
-		join_str = NULL;
-		join_str = (char *)malloc((new_len + 1) * sizeof(*join_str));
-		if (join_str)
-		{
-			temp = join_str;
-			while (*s1)
-				*temp++ = *s1++;
-			while (*s2)
-				*temp++ = *s2++;
-			*temp = '\0';
-		}
-		return (join_str);
+		str[i] = s1[i];
+		i++;
 	}
-	return (NULL);
+	while (s2[j] != '\0')
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[size] = '\0';
+	return (&str[0]);
 }

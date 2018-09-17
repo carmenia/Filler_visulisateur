@@ -6,88 +6,49 @@
 #    By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/27 08:57:48 by nmei              #+#    #+#              #
-#    Updated: 2018/01/23 12:23:36 by nmei             ###   ########.fr        #
+#    Updated: 2018/09/17 14:58:52 by carmenia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-MLX_BASEDIR = ./minilibx/
-
-#detect OS to determine mlx version to use...
-TARGETOS := $(shell uname -s)
-
-ifeq ($(TARGETOS), Darwin)
-	OSXRELEASE := $(shell uname -r | sed 's/\..*//')
-	ifeq ($(OSXRELEASE), 17)
-		OSXVER = highsierra
-		MLX = $(addprefix $(MLX_BASEDIR), $(join minilibx_macos_, $(OSXVER)))
-	endif
-	ifeq ($(OSXRELEASE), 16)
-		OSXVER = sierra
-		MLX = $(addprefix $(MLX_BASEDIR), $(join minilibx_macos_, $(OSXVER)))
-	endif
-	ifeq ($(OSXRELEASE), 15)
-		OSXVER = elcapitan
-		MLX = $(addprefix $(MLX_BASEDIR), $(join minilibx_macos_, $(OSXVER)))
-	endif
-	ifeq ($(OSXRELEASE), 14)
-		OSXVER = yosemite
-	endif
-	ifeq ($(OSXRELEASE), 13)
-		OSXVER = maverick
-	endif
-	ifeq ($(OSXRELEASE), 12)
-		OSXVER = mountainlion
-	endif
-	ifeq ($(OSXRELEASE), 11)
-		OSXVER = lion
-	endif
-endif
-
 NAME = filler_viz
-SRCS_DIR = ./
+
+CFLAGS = -Wall -Wextra -Werror
+
 INCLUDES = ./includes/
-RM = /bin/rm -f
 
-FILES = main image key_hooks game_state_list_utils read_utils render\
-render_str general_utils color sound
-CFILES = $(patsubst %, $(SRCS_DIR)%.c, $(FILES))
-OFILES = $(patsubst %, %.o, $(FILES))
-CFLAGS = -Wall -Wextra -Werror -O2 -funroll-loops
+SRC = main.c\
+	  image.c\
+	  key_hooks.c\
+	  game_state_list_utils.c\
+	  read_utils.c\
+	  render.c\
+	  render_str.c\
+	  general_utils.c\
+	  color.c\
 
-#mlx library
-MLX_LIB	= $(addprefix $(MLX), mlx.a)
-MLX_INC = -I $(MLX)
-MLX_LINK = -L $(MLX) -l mlx -framework OpenGL -framework AppKit
+OBJ = $(SRC:.c=.o)
 
-#libft
-LFT = ./libft/
-LFT_LIB = $(addprefix $(LFT), ft.a)
-LFT_INC = -I $(LFT)includes/
-LFT_LINK = -L $(LFT) -l ft
+all: $(NAME)
 
-.PHONY: all clean fclean re
+$(NAME): $(OBJ) libft/*.c libft/Makefile
+	@printf "\n\033[32m make libft \033[0m"
+	@make -C libft
+	@cp libft/libft.a ./$(NAME)
+	@gcc $(CFLAGS) -I$(INCLUDES) $(OBJ) -o $(NAME) libft/libft.a /usr/local/lib/libmlx.a -framework OpenGL -framework AppKit
 
-all: $(MLX_LIB) $(LFT_LIB) $(NAME)
-
-$(OFILES):
-	gcc $(CFLAGS) -c -I$(INCLUDES) $(MLX_INC) $(LFT_INC) $(CFILES)
-
-$(LFT_LIB):
-	make -C $(LFT)
-
-$(MLX_LIB):
-	make -C $(MLX)
-
-$(NAME): $(OFILES)
-	gcc $(CFLAGS) $(OFILES) $(MLX_LINK) $(LFT_LINK) -o $(NAME)
+%.o: %.c
+	@printf "\r\033[31mgcc -c -Wall -Wextra -Werror -o $@ $^                    \033[0m"
+	@gcc -c -Wall -Wextra -Werror -o $@ $^
 
 clean:
-	make -C $(MLX) clean
-	make -C $(LFT) clean
-	$(RM) $(OFILES)
+	@cd libft ; make clean ; cd ..
+	@rm -f $(OBJ)
+
 
 fclean: clean
-	make -C $(LFT) fclean
-	$(RM) $(NAME)
+	@cd libft ; make fclean ; cd ..
+	@rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

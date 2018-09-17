@@ -6,14 +6,13 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:48:18 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/14 13:10:32 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/17 14:45:12 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <mlx.h>
-#include <libft.h>
-#include "filler_viz.h"
+#include "includes/filler_viz.h"
 
 void	render_scoreboard(t_envars *e, t_gslst *gs)
 {

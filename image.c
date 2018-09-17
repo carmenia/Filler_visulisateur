@@ -6,13 +6,12 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 20:40:26 by nmei              #+#    #+#             */
-/*   Updated: 2018/01/22 18:30:49 by nmei             ###   ########.fr       */
+/*   Updated: 2018/09/17 14:45:08 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <libft.h>
-#include "filler_viz.h"
+#include "includes/filler_viz.h"
 
 /*
 **	init_img - use mlx functions to initialize our image that we will be

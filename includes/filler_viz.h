@@ -6,13 +6,14 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 18:30:14 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/14 12:46:05 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/17 11:47:34 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_VIZ_H
 # define FILLER_VIZ_H
 # include <stddef.h>
+# include "../libft/libft.h"
 # define TURN_SWITCH	1
 # define PLACED			2
 # define P1_PLACED		4

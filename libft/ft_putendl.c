@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 10:35:10 by nmei              #+#    #+#             */
-/*   Updated: 2017/11/30 13:59:48 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:11:25 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/08 19:11:31 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 void	ft_putendl(char const *s)
 {
-	if (s)
-	{
-		ft_putendl_fd(s, 1);
-	}
+	ft_putendl_fd(s, 1);
 }

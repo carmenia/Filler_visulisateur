@@ -6,11 +6,11 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:15:54 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/14 12:53:10 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/17 14:45:39 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler_viz.h"
+#include "includes/filler_viz.h"
 
 /*
 **	color_lint - generates an intermediate color between c1 and c2.

@@ -3,29 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 14:36:59 by nmei              #+#    #+#             */
-/*   Updated: 2017/11/30 14:01:01 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:16:45 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/13 12:08:19 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
+#include <string.h>
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *str, int c)
 {
-	const char *last_match;
+	int	i;
 
-	last_match = NULL;
-	while (*s)
+	i = ft_strlen(str);
+	while (i >= 0)
 	{
-		if (*s == (char)c)
-			last_match = s;
-		s++;
+		if (str[i] == (char)c)
+			return ((char *)str + i);
+		i--;
 	}
-	if (*s == (char)c)
-		return ((char *)s);
-	if (last_match)
-		return ((char *)last_match);
 	return (NULL);
 }

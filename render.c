@@ -6,14 +6,13 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 13:05:17 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/14 12:46:08 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/17 14:45:08 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <mlx.h>
-#include <libft.h>
-#include "filler_viz.h"
+#include "includes/filler_viz.h"
 
 void	draw_rect(t_envars *env, int row, int col, int color)
 {
@@ -85,5 +84,4 @@ void	render(t_envars *env)
 	mlx_put_image_to_window(env->mlx, env->win, env->image.image, 0, 0);
 	render_scoreboard(env, gs);
 	render_piece_pos(env, gs);
-	choose_sound(env, gs);
 }

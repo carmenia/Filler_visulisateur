@@ -3,37 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/14 10:13:09 by nmei              #+#    #+#             */
-/*   Updated: 2017/12/09 20:23:57 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:11:59 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/18 13:45:20 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-static void	number_tochar(int num, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int digit;
-	int remainder;
+	long	i;
 
-	digit = num % 10;
-	remainder = num / 10;
-	if (remainder != 0)
+	i = n;
+	if (i < 0)
 	{
-		number_tochar(remainder, fd);
-		ft_putchar_fd('0' + ft_abs(digit), fd);
-	}
-	else
-		ft_putchar_fd('0' + ft_abs(digit), fd);
-}
-
-void		ft_putnbr_fd(int nb, int fd)
-{
-	if (nb < 0)
 		ft_putchar_fd('-', fd);
-	if (nb == 0)
-		ft_putchar_fd('0', fd);
-	else
-		number_tochar(nb, fd);
+		i = -i;
+	}
+	if (i > 9)
+		ft_putnbr_fd(i / 10, fd);
+	ft_putchar_fd(i % 10 + 48, fd);
 }

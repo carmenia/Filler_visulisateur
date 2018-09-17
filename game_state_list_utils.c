@@ -6,13 +6,12 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 13:28:27 by nmei              #+#    #+#             */
-/*   Updated: 2018/01/23 00:34:06 by nmei             ###   ########.fr       */
+/*   Updated: 2018/09/17 14:45:08 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <libft.h>
-#include "filler_viz.h"
+#include "includes/filler_viz.h"
 
 t_gslst	*gs_lstnew(t_game *game, int turn_switch)
 {

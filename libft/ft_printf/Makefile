@@ -3,56 +3,68 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+         #
+#    By: apoque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/12/18 20:56:37 by nmei              #+#    #+#              #
-#    Updated: 2018/01/05 14:42:32 by nmei             ###   ########.fr        #
+#    Created: 2018/01/15 15:03:55 by apoque            #+#    #+#              #
+#    Updated: 2018/09/17 12:29:55 by carmenia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RM = /bin/rm -f
+CC = gcc
+
+CFLAGS = -Werror -Wextra -Wall
 
 NAME = libftprintf.a
-SRCS_DIR = ./
-FILES = ft_printf parse_prespecifiers parse_specifier int_handlers\
-uint_handlers double_handlers str_char_handlers special_handlers\
-hard_double_handlers printf_gen_utils printf_double_utils printf_utf_utils\
-printf_int_utils
-CFILES = $(patsubst %, $(SRCS_DIR)%.c, $(FILES))
-OFILES = $(patsubst %, %.o, $(FILES))
-INCLUDES = ./includes
-CFLAGS = -Wall -Wextra -Werror -O2
 
-#libft
-LFT = ./libft/
-LFT_FILES = ft_isdigit ft_bzero ft_memset ft_isascii ft_strlen
-LFT_CFILES = $(patsubst %, $(LFT)%.c, $(LFT_FILES))
-LFT_OFILES = $(patsubst %, %.o, $(LFT_FILES))
-LFT_LIB = $(addprefix $(LFT), ft.a)
-LFT_INC = -I $(LFT)includes/
+INC = ft_printf.h
 
+SRC = ft_printf.c\
+	 ft_text_parser.c\
+	 ft_treatement.c\
+	 ft_print_chars.c\
+	 ft_options.c\
+	 ft_option_utilities.c\
+	 
+HANDLERS =	ft_i.c\
+			ft_li.c\
+			ft_o.c\
+			ft_u.c\
+			ft_x.c\
+			ft_p.c\
+			ft_str.c\
+			ft_wstr.c\
+			ft_char.c\
+			ft_b.c\
+			ft_conv_wchar.c\
 
-.PHONY: all clean fclean re
+HANDLERSRC	= $(addprefix handlers/, $(HANDLERS))
 
-all : $(LFT_LIB) $(NAME)
+OBJ = $(SRC:.c=.o)
+HANDLEROBJ = $(HANDLERSRC:.c=.o)
 
-$(LFT_LIB):
-	make -C $(LFT)
+all : $(NAME)
 
-$(OFILES) :
-	gcc $(CFLAGS) -c -I $(INCLUDES) $(LFT_INC) $(LFT_CFILES) $(CFILES)
+$(OBJ): %.o: %.c
+	@gcc -c $(CFLAGS) $< -o $@
 
-$(NAME) : $(OFILES)
-	ar rc $(NAME) $(OFILES) $(LFT_OFILES)
-	ranlib $(NAME)
+$(HANDLEROBJ): %.o: %.c
+	@gcc -c $(CFLAGS) $< -o $@
+
+$(NAME) : $(HANDLEROBJ) $(OBJ)
+	@printf "\n"
+	@ar -rc $(NAME) $(OBJ) $(HANDLEROBJ)
+	@ranlib $(NAME)
+	@echo "\033[32mGeneral Objects created\033[0m"
+	@echo "\033[32mHandler Objects created\033[0m"
 
 clean :
-	make -C $(LFT) clean
-	$(RM) $(OFILES)
-	$(RM) $(LFT_OFILES)
+	@rm -rf $(OBJ) $(HANDLEROBJ)
+	@echo "\033[32mRemoved Object files\033[0m"
 
 fclean : clean
-	make -C $(LFT) fclean
-	$(RM) $(NAME)
+	@rm -rf libftprintf.a
+	@echo "\033[32mRemoved Object files and library\033[0m"
 
 re : fclean all
+
+.PHONY: all clean fclean re

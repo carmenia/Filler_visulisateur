@@ -6,15 +6,14 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 19:55:50 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/11 19:10:13 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/17 14:45:08 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include <libft.h>
-#include "filler_viz.h"
+#include "includes/filler_viz.h"
 #define IS_P1(x) ((x)=='O'||(x)=='o')
 #define IS_P2(y) ((y)=='X'||(y)=='x')
 

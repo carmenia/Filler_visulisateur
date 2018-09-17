@@ -3,17 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/15 18:34:36 by nmei              #+#    #+#             */
-/*   Updated: 2017/11/30 14:00:08 by nmei             ###   ########.fr       */
+/*   Created: 2017/11/08 19:12:37 by apoque            #+#    #+#             */
+/*   Updated: 2017/11/08 19:12:42 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-char	*ft_strcat(char *dest, char *src)
+char	*ft_strcat(char *dest, const char *src)
 {
-	ft_strcpy(dest + ft_strlen(dest), src);
+	char	*tmp;
+
+	tmp = (char *)dest;
+	while (*tmp)
+		tmp++;
+	while (*src)
+		*tmp++ = *src++;
+	*tmp = '\0';
 	return (dest);
 }
