@@ -6,7 +6,7 @@
 /*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 12:11:18 by carmenia          #+#    #+#             */
-/*   Updated: 2018/09/24 12:24:30 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/24 14:25:25 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 int			idx(int row, int col, int dim)
 {
 	return (row * dim + col);
-}
-
-double		ft_lint(double start, double end, double decimal_percent)
-{
-	if (start == end)
-		return (start);
-	return (start * (1.0 - decimal_percent) + (end * decimal_percent));
 }
 
 char		*board_strdup(t_game *game, int i, const char *s)

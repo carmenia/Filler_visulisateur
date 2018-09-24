@@ -6,7 +6,7 @@
 /*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 12:10:36 by carmenia          #+#    #+#             */
-/*   Updated: 2018/09/24 12:11:07 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/24 14:23:26 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ int			choose_board_color(t_envars *e, int row, int col)
 {
 	t_game	*g;
 	t_gslst	*gs;
-	double	progress;
 	int		color;
 
 	gs = e->curr_gs;
 	g = e->g;
 	color = 0;
-	progress = (double)gs->color_tab[idx(row, col, g->w)] / (double)g->turn_rt;
 	if (gs->board[row][col] == '.')
 		color = 0xD3D3D3;
 	else if (gs->board[row][col] == 'O')

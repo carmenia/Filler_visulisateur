@@ -6,7 +6,7 @@
 /*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 12:11:04 by carmenia          #+#    #+#             */
-/*   Updated: 2018/09/24 12:11:05 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/24 14:24:22 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,8 @@ t_gslst	*gs_lstnew(t_game *game, int turn_switch)
 
 	if ((new = (t_gslst *)malloc(sizeof(*new))) == NULL)
 		return (NULL);
-	new->flags = 0;
+	ft_bzero(new, sizeof(t_gslst));
 	new->flags |= (turn_switch) ? TURN_SWITCH : 0;
-	new->piece_w = 0;
-	new->piece_h = 0;
-	new->piece_x = 0;
-	new->piece_y = 0;
-	new->turn = 0;
-	new->board = NULL;
-	new->color_tab = NULL;
-	new->piece = NULL;
-	new->prev = NULL;
-	new->next = NULL;
 	new->p1_pts = game->p1_rt;
 	new->p2_pts = game->p2_rt;
 	if (turn_switch == 0)

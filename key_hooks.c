@@ -6,7 +6,7 @@
 /*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 12:26:08 by carmenia          #+#    #+#             */
-/*   Updated: 2018/09/24 12:26:15 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/24 14:41:46 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,9 @@ void		print_current_gs(t_envars *env)
 	ft_printf("\n");
 }
 
-/*
-**	keydown_hook - similar to key_pressed_hook but will only be called when
-**	a key has been pressed AND released.
-**
-**	The following key are mapped:
-**	'esc' (53) = quit the program
-**	'p' (35) = printf the player, board, and piece for current game turn
-**	'f' (3) = move the game state to turn 0
-**	'l'	(37) = move the game state to the last turn
-*/
-
 int			keydown_hook(int key, t_envars *env)
 {
-	if (key == 53)
+	if (key == 53 || key == 12)
 	{
 		cleanup_env(env);
 		exit(0);
@@ -113,16 +102,6 @@ int			keydown_hook(int key, t_envars *env)
 	return (0);
 }
 
-/*
-**	key_pressed_hook - while any of the arrow keys on the keyboard are
-**	held down, shift the map in that direction.
-**
-**	← (123) = move back one turn
-**	→ (124) = move forward one turn
-**	↓ (125) = move forward 9x
-**	↑ (126) = move backward 9x
-*/
-
 int			key_pressed_hook(int key, t_envars *e)
 {
 	int i;
@@ -132,10 +111,10 @@ int			key_pressed_hook(int key, t_envars *e)
 		e->curr_gs = (e->curr_gs->next) ? e->curr_gs->next : e->curr_gs;
 	if (key == 123)
 		e->curr_gs = (e->curr_gs->prev) ? e->curr_gs->prev : e->curr_gs;
-	if (key == 125)
+	if (key == 126)
 		while (++i < 9)
 			e->curr_gs = (e->curr_gs->next) ? e->curr_gs->next : e->curr_gs;
-	if (key == 126)
+	if (key == 125)
 		while (++i < 9)
 			e->curr_gs = (e->curr_gs->prev) ? e->curr_gs->prev : e->curr_gs;
 	if (!(key == 53 || key == 3 || key == 35 || key == 37))
