@@ -6,7 +6,7 @@
 /*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 12:26:26 by carmenia          #+#    #+#             */
-/*   Updated: 2018/09/24 12:26:28 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/24 14:27:49 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ du projet Filler de 42\n\n\
 		Pour naviguer dans la fenetre, utiliser les commandes suivantes:\n\
 		fleche de gauche: aller en arriere d'un tour\n\
 		fleche de droite: aller en avant d'un tour\n\
-		fleche du bas: avancer de 9 tours\n\
-		fleche du haut: reculer de 9 tours\n\
+		fleche du haut: avancer de 9 tours\n\
+		fleche du bas: reculer de 9 tours\n\
 		p: Imprimer le plateau courant sur le terminal\n\
 		f: Retour au debut de la partie\n\
 		l: Avancer jusqu'a la fin de la partie\n\
@@ -48,13 +48,13 @@ du projet Filler de 42\n\n\
 
 void			setup_env(t_envars *e)
 {
-	e->b_glen = 12; // taille des carreaux
-	e->b_lpad = e->b_glen; //largeure de ce qui est noir
-	e->b_tpad = 70; // hauteur de ce qui est noir
-	e->b_row_space = 1; // taille des separateurs horizontaux
-	e->b_col_space = 1; // taille des separateurs verticaux
-	e->w = ((e->g->w + 1) * e->b_glen + e->b_lpad) * 2; // width generale
-	e->h = (e->g->h + 1) * e->b_glen + e->b_tpad; // height generale
+	e->b_glen = 12;
+	e->b_lpad = e->b_glen;
+	e->b_tpad = 70;
+	e->b_row_space = 1;
+	e->b_col_space = 1;
+	e->w = ((e->g->w + 1) * e->b_glen + e->b_lpad) * 2;
+	e->h = (e->g->h + 1) * e->b_glen + e->b_tpad;
 	e->size = e->w * e->h;
 	e->mlx = mlx_init();
 	e->win = mlx_new_window(e->mlx, e->w, e->h, "Visualisteur Filler 42");
