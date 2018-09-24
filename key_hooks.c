@@ -6,7 +6,7 @@
 /*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 12:26:08 by carmenia          #+#    #+#             */
-/*   Updated: 2018/09/24 14:26:48 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/24 14:41:46 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		print_current_gs(t_envars *env)
 
 int			keydown_hook(int key, t_envars *env)
 {
-	if (key == 53)
+	if (key == 53 || key == 12)
 	{
 		cleanup_env(env);
 		exit(0);

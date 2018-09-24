@@ -6,7 +6,7 @@
 /*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 12:26:26 by carmenia          #+#    #+#             */
-/*   Updated: 2018/09/24 14:27:49 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/24 14:44:30 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ du projet Filler de 42\n\n\
 		p: Imprimer le plateau courant sur le terminal\n\
 		f: Retour au debut de la partie\n\
 		l: Avancer jusqu'a la fin de la partie\n\
-		esc: Quitter la fenetre\n\n");
+		esc ou q: Quitter la fenetre\n\n");
 	}
 }
 
