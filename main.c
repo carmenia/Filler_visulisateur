@@ -6,7 +6,7 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 09:52:48 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/17 14:43:36 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/24 10:28:42 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,6 @@ void			disp_info(int mode)
 	}
 }
 
-
-// remplaceable par un bzero
-void			setup_game(t_game *game)
-{
-	game->p1 = NULL;
-	game->p2 = NULL;
-	game->turn_rt = 0;
-	game->h = 0;
-	game->w = 0;
-	game->p1_rt = 0;
-	game->p2_rt = 0;
-	game->color_t_rt = NULL;
-	game->gss = NULL;
-	game->first = NULL;
-	game->last = NULL;
-}
-
 void			setup_env(t_envars *e)
 {
 	e->b_glen = 12; // taille des carreaux
@@ -93,8 +76,7 @@ int				main(int argc, const char *argv[])
 
 	if (argc == 1 || argc == 2)
 	{
-		// remplaceable par un bzero
-		setup_game(&game);
+		ft_bzero(&game, sizeof(t_game));
 		if (read_game(&game, env.fd, argc, (char *)argv[1]) == 0)
 		{
 			disp_info(2);

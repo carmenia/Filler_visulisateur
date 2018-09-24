@@ -6,7 +6,7 @@
 /*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 19:55:50 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/17 14:45:08 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/09/24 10:34:57 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,58 +168,6 @@ int			read_turn(t_game *game, int fd, ssize_t *ret, char *line)
 	}
 	return (0);
 }
-
-/*
-**	test()
-**	Useful test function to make sure maps are being read in correctly
-**	Run `test(game);` after reading vm output to get lots of useful information
-*/
-
-/*
-**#include <stdio.h>
-**
-**void	test(t_game *game)
-**{
-**	t_gslst	*curr_state;
-**	int		i;
-**
-**	printf("%s vs. %s\n", game->p1, game->p2);
-**	curr_state = game->first;
-**	while (curr_state)
-**	{
-**		if ((curr_state->flags & TURN_SWITCH) == 0)
-**		{
-**			printf("Turn: %d\n", curr_state->turn);
-**			i = 0;
-**			while (i < game->h)
-**			{
-**				printf("board: |%s| %d\n", curr_state->board[i], i);
-**				i++;
-**			}
-**		}
-**		i = 0;
-**		printf("placer: %s\n",
-**					(curr_state->flags & P1_PLACED) ? "P1" : "P2");
-**		printf("pw: %d, ph: %d, px: %d, py: %d\n",
-**			curr_state->piece_w, curr_state->piece_h,
-**			curr_state->piece_x, curr_state->piece_y);
-**		while (i < curr_state->piece_h)
-**		{
-**			printf("piece: |%s| %d\n", curr_state->piece[i], i);
-**			i++;
-**		}
-**		printf("flags: %d\n", curr_state->flags);
-**		printf("p1: %d, p2: %d\n", curr_state->p1_pts, curr_state->p2_pts);
-**		curr_state = curr_state->next;
-**	}
-**	printf("total turns: %d\n", game->turn_rt);
-**}
-*/
-
-/*
-**	read_game()
-**	Driving function to read a game that is output by the filler VM
-*/
 
 int			read_game(t_game *game, int fd, int argc, char *fpath)
 {
