@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/14 09:52:48 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/24 10:28:42 by carmenia         ###   ########.fr       */
+/*   Created: 2018/09/24 12:26:26 by carmenia          #+#    #+#             */
+/*   Updated: 2018/09/24 12:26:28 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,30 @@ void			disp_info(int mode)
 {
 	if (mode == 0)
 	{
-		write(2, "\nUsage: ./filler_viz [filler_vm_output] ", 40);
+		write(2, "\nUsage error: please verify input format is either:", 51);
+		write(2, "\n./filler_viz [filler_vm_output] ", 33);
 		write(2, "\nOR\nfiller_vm [vm_options] | ./filler_viz\n\n", 43);
 		exit(1);
 	}
 	else if (mode == 1)
 	{
-		write(2, "An error occurred reading the file or input.", 44);
-		write(2, " Is it valid?\n", 14);
+		write(2, "An error occurred reading the file or input.\n", 45);
+		write(2, "Please verify that it is valid\n", 31);
 		exit(1);
 	}
 	else if (mode == 2)
 	{
-		ft_printf("\n			Filler Viz 42!!\n\
-		left arrow (←): move back one turn\n\
-		right arrow (→): move forward one turn\n\
-		down arrow (↓): move forward 9x\n\
-		up arrow (↑): move backward 9x\n\
-		p: Print the current player, board, and piece to console\n\
-		f: Move the game state to the first turn\n\
-		l: Move the game state to the last turn\n\
-		esc: Quit :(\n\n");
+		ft_printf("\n		Ceci est un visualisateur dans le cadre \
+du projet Filler de 42\n\n\
+		Pour naviguer dans la fenetre, utiliser les commandes suivantes:\n\
+		fleche de gauche: aller en arriere d'un tour\n\
+		fleche de droite: aller en avant d'un tour\n\
+		fleche du bas: avancer de 9 tours\n\
+		fleche du haut: reculer de 9 tours\n\
+		p: Imprimer le plateau courant sur le terminal\n\
+		f: Retour au debut de la partie\n\
+		l: Avancer jusqu'a la fin de la partie\n\
+		esc: Quitter la fenetre\n\n");
 	}
 }
 
@@ -54,20 +57,12 @@ void			setup_env(t_envars *e)
 	e->h = (e->g->h + 1) * e->b_glen + e->b_tpad; // height generale
 	e->size = e->w * e->h;
 	e->mlx = mlx_init();
-	e->win = mlx_new_window(e->mlx, e->w, e->h, "Filler Viz 42");
+	e->win = mlx_new_window(e->mlx, e->w, e->h, "Visualisteur Filler 42");
 	e->prev_turn = -1;
 	init_img(e);
 	mlx_key_hook(e->win, keydown_hook, e);
 	mlx_hook(e->win, 2, 0, key_pressed_hook, e);
 }
-
-/*
-**	main - function where we start our mlx session
-**	There are additional hooks that can be found!
-**	See: https://github.com/qst0/ft_libgfx
-**	Of particular interest are the mouse press, release, and movement hooks
-**	which are mapped to 4, 5, and 6 respectively.
-*/
 
 int				main(int argc, const char *argv[])
 {

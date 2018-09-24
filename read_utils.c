@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 19:55:50 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/24 10:34:57 by carmenia         ###   ########.fr       */
+/*   Created: 2018/09/24 12:26:50 by carmenia          #+#    #+#             */
+/*   Updated: 2018/09/24 12:27:15 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@
 #include "includes/filler_viz.h"
 #define IS_P1(x) ((x)=='O'||(x)=='o')
 #define IS_P2(y) ((y)=='X'||(y)=='x')
-
-/*
-**	The vm header is 9 lines long
-**	line 5 contains the p1 filler (ex: "launched ./players/player1.filler")
-**	line 7 contains the p2 filler
-**	If we just take everything after the '/' we'll have the filler name!
-*/
 
 int			read_header(t_game *game, int fd, ssize_t *ret, char *line)
 {
@@ -53,16 +46,6 @@ int			read_header(t_game *game, int fd, ssize_t *ret, char *line)
 		return (1);
 }
 
-/*
-**	read_board()
-**	1) If the line obtained in the read_turn() function was "Plateau " (8 chars)
-**	   then it will be followed by two numbers separated by a ' ' describing
-**	   the height and width of the game board. Easily obtained with ft_atoi
-**	   and ft_strchr.
-**	2) We then add a new link in our game state linked list
-**	3) We then copy the current board state into our current game state
-*/
-
 void		read_board(t_game *game, int fd, ssize_t *ret, char *line)
 {
 	int	i;
@@ -90,19 +73,6 @@ void		read_board(t_game *game, int fd, ssize_t *ret, char *line)
 		(game->h * game->w) * sizeof(short));
 }
 
-/*
-**	read_next_piece()
-**	1) If the line obtained in read_turn() was "Piece " (6 chars)
-**	2) We first need to check if a player has already "placed" a piece on our
-**	   current turn. If so that means the player gave a bad coordinate.
-**	   We need to undo their point then add a new game state list element so
-**	   that we can keep track of what the *other* player gets as a piece.
-**	   Note: The new game state element if the players are 'turn switched'
-**	         will not contain a copy of the game board.
-**	3) We then read the piece height and width into our current game state
-**	4) Then we copy the current piece into our current game state
-*/
-
 void		read_next_piece(t_game *game, int fd, ssize_t *ret, char *line)
 {
 	int		i;
@@ -126,19 +96,6 @@ void		read_next_piece(t_game *game, int fd, ssize_t *ret, char *line)
 		free(line);
 	}
 }
-
-/*
-**	read_turn()
-**	We'll get 1 line (after reading in the header)
-**	1) If it contains "fin" we've finished!
-**	2) If it contains "Plateau" we're about to get a board
-**	3) If it contains "Piece" we're about to get a piece
-**	   a) After the piece there will be one line describing which player
-**		  is placing the piece and where they want to place it.
-**	   IMPORTANT NOTE: We need to re-assign gss = game->gss because if
-**	   there was a turn switch then the gane->gss will be pointing at the
-**	   previous game state and not the most current state.
-*/
 
 int			read_turn(t_game *game, int fd, ssize_t *ret, char *line)
 {

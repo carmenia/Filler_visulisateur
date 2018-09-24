@@ -3,34 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/22 18:27:16 by nmei              #+#    #+#             */
-/*   Updated: 2018/09/17 14:45:24 by carmenia         ###   ########.fr       */
+/*   Created: 2018/09/24 12:11:18 by carmenia          #+#    #+#             */
+/*   Updated: 2018/09/24 12:24:30 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "includes/filler_viz.h"
 
-/*
-**	idx() - Useful function to get the row, col value from a flattened
-**	2D matrix. Dim the is the 'width' of the matrix...
-*/
-
 int			idx(int row, int col, int dim)
 {
 	return (row * dim + col);
 }
-
-/*
-**	ft_lint - Linear INTerpolation between two points given a decimal percent
-**
-**	We don't do: (start + decimal_percent * (end - start)) because if
-**	start and end differ significantly in magnitude then we lose precision.
-**
-**	Test with: ft_lint(-16.0e30, 16.0, 1.0)
-*/
 
 double		ft_lint(double start, double end, double decimal_percent)
 {
@@ -38,14 +24,6 @@ double		ft_lint(double start, double end, double decimal_percent)
 		return (start);
 	return (start * (1.0 - decimal_percent) + (end * decimal_percent));
 }
-
-/*
-**	board_strdup()
-**	Custom version of ft_strdup() just for this visualizer
-**	On top of duplicating a string, it also looks for 'o' and 'x' chars
-**	in the current map and assigns the current running turn total to the
-**	game color table;
-*/
 
 char		*board_strdup(t_game *game, int i, const char *s)
 {
